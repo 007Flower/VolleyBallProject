@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tournaments</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="flex justify-between items-center p-4 bg-white shadow">
+    <h1 class="text-2xl font-bold">Tournaments</h1>
+    <div>
+      <a href="/dashboard" class="text-blue-600 hover:underline mr-4">Dashboard</a>
+      <a href="/tournaments/new" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Create Tournament</a>
+    </div>
+  </header>
+  <main class="standard-container">
+    <% if (tournaments && tournaments.length > 0) { %>
+      <ul class="list-disc pl-6">
+        <% tournaments.forEach(tournament => { %>
+          <li><a href="/tournaments/<%= tournament.id %>" class="text-blue-600 hover:underline"><%= tournament.name %></a></li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No tournaments found.</p>
+    <% } %>
+  </main>
+</body>
+</html>

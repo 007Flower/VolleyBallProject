@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= team.name %> - Details</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1><%= team.name %></h1>
+  </header>
+  <main class="standard-container">
+    <dl>
+      <dt>Rank:</dt>
+      <dd><%= team.rank %></dd>
+      <dt>Location:</dt>
+      <dd><%= team.location %></dd>
+    </dl>
+    <% if (players && players.length > 0) { %>
+      <h2>Players</h2>
+      <ul>
+        <% players.forEach(player => { %>
+          <li class="flex justify-between items-center">
+            <span><%= player.name %> (#<%= player.number %>) - <%= player.position %></span>
+            <div>
+              <a href="/teams/<%= team.id %>/players/<%= player.id %>/edit" class="text-yellow-500 hover:underline mr-2">Edit</a>
+              <form action="/teams/<%= team.id %>/players/<%= player.id %>/delete" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove this player?');">
+                <button type="submit" class="text-red-600 hover:underline bg-transparent border-none p-0 cursor-pointer">Remove</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No players in this team.</p>
+    <% } %>
+    <div>
+      <a href="/teams/<%= team.id %>/edit" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition inline-block mr-2">Edit</a>
+      <form action="/teams/<%= team.id %>/delete" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this team?');">
+        <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition" type="submit">Delete</button>
+      </form>
+    </div>
+    <div class="mt-6">
+      <h3>Add Player to Team</h3>
+      <form action="/teams/<%= team.id %>/addPlayer" method="post" class="space-y-4 max-w-md">
+        <div>
+          <label for="name" class="block font-semibold mb-1">Name</label>
+          <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="number" class="block font-semibold mb-1">Number</label>
+          <input type="number" id="number" name="number" required class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="position" class="block font-semibold mb-1">Position</label>
+          <input type="text" id="position" name="position" class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="height" class="block font-semibold mb-1">Height</label>
+          <input type="text" id="height" name="height" class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="age" class="block font-semibold mb-1">Age</label>
+          <input type="number" id="age" name="age" class="w-full border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            Add Player
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="back-link">
+      <a href="/teams">Back to Teams</a>
+    </div>
+  </main>
+</body>
+</html>

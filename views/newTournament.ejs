@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create New Tournament</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-900">
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Create New Tournament</h1>
+    <a href="/tournaments" class="text-blue-600 hover:underline">Back to Tournaments</a>
+  </nav>
+  <main class="max-w-[600px] mx-auto p-6 bg-white rounded shadow mt-6">
+    <form action="/tournaments" method="post" class="space-y-4">
+      <div>
+        <label for="name" class="block font-semibold mb-1">Name</label>
+        <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="venue" class="block font-semibold mb-1">Venue</label>
+        <input type="text" id="venue" name="venue" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="start_date" class="block font-semibold mb-1">Start Date</label>
+        <input type="date" id="start_date" name="start_date" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="end_date" class="block font-semibold mb-1">End Date</label>
+        <input type="date" id="end_date" name="end_date" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="organizer" class="block font-semibold mb-1">Organizer</label>
+        <input type="text" id="organizer" name="organizer" class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="contact" class="block font-semibold mb-1">Contact</label>
+        <input type="text" id="contact" name="contact" class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="status" class="block font-semibold mb-1">Status</label>
+        <select id="status" name="status" class="w-full border border-gray-300 rounded px-3 py-2">
+          <option value="Scheduled">Scheduled</option>
+          <option value="Ongoing">Ongoing</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div>
+        <label for="description" class="block font-semibold mb-1">Description</label>
+        <textarea id="description" name="description" rows="4" class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+      </div>
+      <div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          Create Tournament
+        </button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

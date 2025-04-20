@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-900">
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Teams</h1>
+    <a href="/dashboard" class="text-blue-600 hover:underline">Dashboard</a>
+  </nav>
+  <main class="max-w-[600px] mx-auto p-6">
+    <% if (teams.length === 0) { %>
+      <p class="text-center text-gray-600">No teams found.</p>
+    <% } else { %>
+      <ul class="space-y-4">
+        <% teams.forEach(team => { %>
+          <li class="bg-white rounded shadow p-4 hover:shadow-lg transition-shadow">
+            <a href="/teams/<%= team.id %>" class="text-xl font-semibold text-blue-600 hover:underline">
+              <%= team.name %>
+            </a>
+            <p class="text-gray-700 mt-1">Rank: <%= team.rank %></p>
+            <p class="text-gray-700">Location: <%= team.location %></p>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+    <div class="mt-6">
+      <a href="/teams/new" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        Create New Team
+      </a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - BVA Volleyball</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= user.name %>!</h1>
+        <nav>
+            <ul>
+                <li><a href="/tournaments">Tournaments</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Your Role: <%= user.role %></h2>
+            <p>Use the navigation above to manage tournaments, teams, and more.</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= tournament.name %> - Details</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1><%= tournament.name %></h1>
+  </header>
+  <main class="standard-container">
+    <dl>
+      <dt>Venue:</dt>
+      <dd><%= tournament.venue %></dd>
+      <dt>Start Date:</dt>
+      <dd><%= tournament.start_date.toISOString().slice(0,10) %></dd>
+      <dt>End Date:</dt>
+      <dd><%= tournament.end_date.toISOString().slice(0,10) %></dd>
+      <dt>Organizer:</dt>
+      <dd><%= tournament.organizer %></dd>
+      <dt>Contact:</dt>
+      <dd><%= tournament.contact %></dd>
+      <dt>Status:</dt>
+      <dd><%= tournament.status %></dd>
+      <dt>Description:</dt>
+      <dd><%= tournament.description %></dd>
+    </dl>
+    <% if (teams && teams.length > 0) { %>
+      <h2>Teams Playing</h2>
+      <ul>
+        <% teams.forEach(team => { %>
+          <li class="flex justify-between items-center">
+            <a href="/teams/<%= team.id %>" class="text-blue-600 hover:underline"><%= team.name %></a>
+            <form action="/tournaments/<%= tournament.id %>/removeTeam" method="post" onsubmit="return confirm('Are you sure you want to remove this team from the tournament?');">
+              <input type="hidden" name="teamId" value="<%= team.id %>" />
+              <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700 transition">Remove</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No teams are currently playing in this tournament.</p>
+    <% } %>
+    <div>
+      <a href="/tournaments/<%= tournament.id %>/edit" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition inline-block mr-2">Edit</a>
+      <form action="/tournaments/<%= tournament.id %>/delete" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this tournament?');">
+        <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition" type="submit">Delete</button>
+      </form>
+    </div>
+    <div class="mt-6">
+      <h3>Add Team to Tournament</h3>
+      <form action="/tournaments/<%= tournament.id %>/addTeam" method="post" class="flex space-x-2">
+        <select name="teamId" required class="border border-gray-300 rounded px-3 py-2 flex-grow">
+          <% allTeams.forEach(team => { %>
+            <option value="<%= team.id %>"><%= team.name %></option>
+          <% }) %>
+        </select>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Add Team</button>
+      </form>
+    </div>
+    </div>
+    <div class="back-link">
+      <a href="/tournaments">Back to Tournaments</a>
+    </div>
+  </main>
+</body>
+</html>
